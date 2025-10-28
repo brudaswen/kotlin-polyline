@@ -1,0 +1,45 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, macosArm64, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <de.brudaswen.kotlin.polyline:library>
+abstract fun interface <#A: de.brudaswen.kotlin.polyline/Coordinate> de.brudaswen.kotlin.polyline/CoordinateFactory { // de.brudaswen.kotlin.polyline/CoordinateFactory|null[0]
+    abstract fun create(kotlin/Double, kotlin/Double): #A // de.brudaswen.kotlin.polyline/CoordinateFactory.create|create(kotlin.Double;kotlin.Double){}[0]
+}
+
+abstract fun interface <#A: de.brudaswen.kotlin.polyline/Polyline, #B: de.brudaswen.kotlin.polyline/Coordinate> de.brudaswen.kotlin.polyline/PolylineFactory { // de.brudaswen.kotlin.polyline/PolylineFactory|null[0]
+    abstract fun create(kotlin.sequences/Sequence<#B>): #A // de.brudaswen.kotlin.polyline/PolylineFactory.create|create(kotlin.sequences.Sequence<1:1>){}[0]
+}
+
+abstract interface de.brudaswen.kotlin.polyline/Coordinate { // de.brudaswen.kotlin.polyline/Coordinate|null[0]
+    abstract val lat // de.brudaswen.kotlin.polyline/Coordinate.lat|{}lat[0]
+        abstract fun <get-lat>(): kotlin/Double // de.brudaswen.kotlin.polyline/Coordinate.lat.<get-lat>|<get-lat>(){}[0]
+    abstract val lon // de.brudaswen.kotlin.polyline/Coordinate.lon|{}lon[0]
+        abstract fun <get-lon>(): kotlin/Double // de.brudaswen.kotlin.polyline/Coordinate.lon.<get-lon>|<get-lon>(){}[0]
+}
+
+abstract interface de.brudaswen.kotlin.polyline/Polyline { // de.brudaswen.kotlin.polyline/Polyline|null[0]
+    abstract val coordinates // de.brudaswen.kotlin.polyline/Polyline.coordinates|{}coordinates[0]
+        abstract fun <get-coordinates>(): kotlin.collections/List<de.brudaswen.kotlin.polyline/Coordinate> // de.brudaswen.kotlin.polyline/Polyline.coordinates.<get-coordinates>|<get-coordinates>(){}[0]
+
+    final object Companion { // de.brudaswen.kotlin.polyline/Polyline.Companion|null[0]
+        final fun from(kotlin/String): de.brudaswen.kotlin.polyline/Polyline // de.brudaswen.kotlin.polyline/Polyline.Companion.from|from(kotlin.String){}[0]
+    }
+}
+
+final object de.brudaswen.kotlin.polyline/PolylineEncoding { // de.brudaswen.kotlin.polyline/PolylineEncoding|null[0]
+    final fun <#A1: de.brudaswen.kotlin.polyline/Coordinate> decodeCoordinates(kotlin/String, de.brudaswen.kotlin.polyline/CoordinateFactory<#A1>): kotlin.sequences/Sequence<#A1> // de.brudaswen.kotlin.polyline/PolylineEncoding.decodeCoordinates|decodeCoordinates(kotlin.String;de.brudaswen.kotlin.polyline.CoordinateFactory<0:0>){0§<de.brudaswen.kotlin.polyline.Coordinate>}[0]
+    final fun <#A1: de.brudaswen.kotlin.polyline/Polyline, #B1: de.brudaswen.kotlin.polyline/Coordinate> decode(kotlin/String, de.brudaswen.kotlin.polyline/PolylineFactory<#A1, #B1>, de.brudaswen.kotlin.polyline/CoordinateFactory<#B1>): de.brudaswen.kotlin.polyline/Polyline // de.brudaswen.kotlin.polyline/PolylineEncoding.decode|decode(kotlin.String;de.brudaswen.kotlin.polyline.PolylineFactory<0:0,0:1>;de.brudaswen.kotlin.polyline.CoordinateFactory<0:1>){0§<de.brudaswen.kotlin.polyline.Polyline>;1§<de.brudaswen.kotlin.polyline.Coordinate>}[0]
+    final fun decode(kotlin/String): de.brudaswen.kotlin.polyline/Polyline // de.brudaswen.kotlin.polyline/PolylineEncoding.decode|decode(kotlin.String){}[0]
+    final fun decodeCoordinates(kotlin/String): kotlin.sequences/Sequence<de.brudaswen.kotlin.polyline/Coordinate> // de.brudaswen.kotlin.polyline/PolylineEncoding.decodeCoordinates|decodeCoordinates(kotlin.String){}[0]
+    final fun encode(de.brudaswen.kotlin.polyline/Polyline): kotlin/String // de.brudaswen.kotlin.polyline/PolylineEncoding.encode|encode(de.brudaswen.kotlin.polyline.Polyline){}[0]
+    final fun encode(kotlin.collections/List<de.brudaswen.kotlin.polyline/Coordinate>): kotlin/String // de.brudaswen.kotlin.polyline/PolylineEncoding.encode|encode(kotlin.collections.List<de.brudaswen.kotlin.polyline.Coordinate>){}[0]
+    final fun encode(kotlin.sequences/Sequence<de.brudaswen.kotlin.polyline/Coordinate>): kotlin/String // de.brudaswen.kotlin.polyline/PolylineEncoding.encode|encode(kotlin.sequences.Sequence<de.brudaswen.kotlin.polyline.Coordinate>){}[0]
+}
+
+final fun (de.brudaswen.kotlin.polyline/Polyline).de.brudaswen.kotlin.polyline/encoded(): kotlin/String // de.brudaswen.kotlin.polyline/encoded|encoded@de.brudaswen.kotlin.polyline.Polyline(){}[0]
+final fun de.brudaswen.kotlin.polyline/Coordinate(kotlin/Double, kotlin/Double): de.brudaswen.kotlin.polyline/Coordinate // de.brudaswen.kotlin.polyline/Coordinate|Coordinate(kotlin.Double;kotlin.Double){}[0]
+final fun de.brudaswen.kotlin.polyline/Polyline(kotlin.collections/List<de.brudaswen.kotlin.polyline/Coordinate>): de.brudaswen.kotlin.polyline/Polyline // de.brudaswen.kotlin.polyline/Polyline|Polyline(kotlin.collections.List<de.brudaswen.kotlin.polyline.Coordinate>){}[0]
