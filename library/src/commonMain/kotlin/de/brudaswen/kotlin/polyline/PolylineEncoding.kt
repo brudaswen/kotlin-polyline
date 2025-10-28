@@ -180,14 +180,14 @@ public object PolylineEncoding {
 
     private fun Iterator<Char>.readEncodedValue(): Int {
         var value = 0
-        var s = 0
+        var shiftPos = 0
 
         do {
             val chunk = next().code - 63
             val isLast = (chunk and 0x20) == 0
 
-            value = value or ((chunk and 0b11111) shl s)
-            s += 5
+            value = value or ((chunk and 0b11111) shl shiftPos)
+            shiftPos += 5
         } while (!isLast)
 
         return if (value and 0x1 > 0) value.inv() shr 1 else value shr 1
