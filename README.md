@@ -4,7 +4,7 @@
 [![Snapshot](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fcentral.sonatype.com%2Frepository%2Fmaven-snapshots%2Fde%2Fbrudaswen%2Fkotlin%2Fpolyline%2Fkotlin-polyline%2Fmaven-metadata.xml&style=flat-square&label=snapshot)](https://oss.sonatype.org/#nexus-search;gav~de.brudaswen.kotlin.polyline~kotlin-polyline~~~)
 [![CI Status](https://img.shields.io/github/actions/workflow/status/brudaswen/kotlin-polyline/ci-main.yml?style=flat-square)](https://github.com/brudaswen/kotlin-polyline/actions/workflows/ci-main.yml)
 [![Codecov](https://img.shields.io/codecov/c/github/brudaswen/kotlin-polyline?style=flat-square)](https://codecov.io/gh/brudaswen/kotlin-polyline)
-[![License](https://img.shields.io/github/license/brudaswen/kotlin-polyline?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0)
+[![License](https://img.shields.io/github/license/brudaswen/kotlin-polyline?style=flat-square)](https://mit-license.org/)
 
 Kotlin Multiplatform implementation for
 [Google Polyline encoding algorithm](http://code.google.com/apis/maps/documentation/polylinealgorithm.html)
