@@ -52,6 +52,28 @@ internal class PolylineEncodingTest {
     }
 
     @Test
+    fun `decoding and encoding using Polyline extensions`() {
+        val polyline = Polyline(
+            coordinates = listOf(
+                Coordinate(0.0, 0.0),
+                Coordinate(1.0, 1.0),
+                Coordinate(-1.0, -1.0),
+                Coordinate(-0.00001, -0.00001),
+                Coordinate(0.00001, 0.00001),
+                Coordinate(-89.99999, -179.99999),
+                Coordinate(89.99999, 179.99999),
+                Coordinate(-90.0, -180.0),
+                Coordinate(90.0, 180.0),
+            ),
+        )
+
+        assertEquals(
+            expected = polyline,
+            actual = Polyline.from(polyline.encoded()),
+        )
+    }
+
+    @Test
     fun `encode and decode custom types`() {
         val polyline = CustomPolyline(
             points = listOf(
