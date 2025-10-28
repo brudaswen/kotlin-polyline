@@ -1,0 +1,36 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: macOS-latest
+
+    steps:
+    - name: Checkout GIT repository
+      uses: actions/checkout@v4
+
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu'
+        java-version: 17
+
+    - name: Binary compatibility validation
+      run: ./gradlew checkLegacyAbi
+
+    - name: Ktlint Check
+      run: ./gradlew ktlintCheck
+
+    - name: Build with Gradle
+      run: ./gradlew build
+
+    - name: Publish RELEASE to Maven Central
+      env:
+        ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+        ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+        ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
+        ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
+      run: ./gradlew publishToSonatype closeAndReleaseStagingRepositories

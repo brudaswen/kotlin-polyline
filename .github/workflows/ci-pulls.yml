@@ -1,0 +1,35 @@
+name: Pull Request
+
+on:
+  pull_request
+
+jobs:
+  build:
+    runs-on: macOS-latest
+
+    steps:
+    - name: Checkout GIT repository
+      uses: actions/checkout@v4
+
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu'
+        java-version: 17
+
+    - name: Binary compatibility validation
+      run: ./gradlew checkLegacyAbi
+
+    - name: Ktlint Check
+      run: ./gradlew ktlintCheck
+
+    - name: Build with Gradle
+      run: ./gradlew build
+
+    - name: Upload report to codecov.io
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: library/build/reports/kover/report.xml
+        flags: unittests
+        fail_ci_if_error: true
