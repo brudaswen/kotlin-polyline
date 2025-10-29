@@ -30,6 +30,9 @@ public object HaversineDistance {
         lat2: Double,
         lon2: Double,
     ): Double {
+        // Fast return zero distance for same coordinates
+        if (lat1 == lat2 && lon1 == lon2) return 0.0
+
         val lat1Rad = lat1.toRadians()
         val lon1Rad = lon1.toRadians()
         val lat2Rad = lat2.toRadians()

@@ -45,13 +45,15 @@ public fun Polyline.encoded(): String = PolylineEncoding.encode(this)
 /**
  * Sample a [Polyline] by discarding unimportant nodes.
  *
- * First applies the [DistanceThresholdSampler] by discarding points that are closer than
+ * First applies the [DistanceThresholdSampler] by discarding points that are closer or equal than
  * [thresholdInMeters] to the last retained point.
  *
  * Afterwards, applies the [RamerDouglasPeuckerSampler] to discard points that are close to a
  * simplified curve.
  *
- * @param thresholdInMeters The minimum distance (in meters) required to keep a point.
+ * @param thresholdInMeters Keep points with distance to last retained point larger than this
+ * threshold. A `zero` threshold will result in discarding redundant points only. A negative
+ * threshold will result in no sampling at all.
  * @param epsilon The maximum distance between the original curve and the simplified curve. A
  * smaller epsilon results in a curve with more points, closer to the original, while a larger
  * epsilon leads to a more simplified curve with fewer points. This value must be greater than zero.

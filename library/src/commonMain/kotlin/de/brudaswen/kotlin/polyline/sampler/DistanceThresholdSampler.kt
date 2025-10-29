@@ -5,19 +5,21 @@ import de.brudaswen.kotlin.polyline.Polyline
 import de.brudaswen.kotlin.polyline.distanceTo
 
 /**
- * Sample [Polyline] by discarding points that are closer than [thresholdInMeters] to
+ * Sample [Polyline] by discarding points that are closer or equal than [thresholdInMeters] to
  * the last retained point.
  *
  * This is a simple and fast method to clean up any noise from the polyline (e.g. similar nodes
  * while not moving).
  *
- * @param thresholdInMeters The minimum distance (in meters) required to keep a point.
+ * @param thresholdInMeters Keep points with distance to last retained point larger than this
+ * threshold. A `zero` threshold will result in discarding redundant points only. A negative
+ * threshold will result in no sampling at all.
  */
 public class DistanceThresholdSampler(
     private val thresholdInMeters: Double,
 ) : TrackSampler {
     override fun sample(coordinates: List<Coordinate>): List<Coordinate> {
-        if (thresholdInMeters <= 0.0) return coordinates
+        if (thresholdInMeters < 0.0) return coordinates
         if (coordinates.size < 2) return coordinates
 
         val sampled = mutableListOf<Coordinate>()
@@ -25,8 +27,8 @@ public class DistanceThresholdSampler(
         var current = coordinates.first()
         sampled.add(current)
 
-        coordinates.forEach { coordinate ->
-            if (current.distanceTo(coordinate) >= thresholdInMeters) {
+        coordinates.asSequence().drop(1).forEach { coordinate ->
+            if (current.distanceTo(coordinate) > thresholdInMeters) {
                 sampled.add(coordinate)
                 current = coordinate
             }

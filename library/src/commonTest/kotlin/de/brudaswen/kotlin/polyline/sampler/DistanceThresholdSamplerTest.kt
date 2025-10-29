@@ -11,6 +11,44 @@ internal class DistanceThresholdSamplerTest {
     )
 
     @Test
+    fun `when thresholdInMeters is negative then no sampling should occur`() {
+        val sampler = DistanceThresholdSampler(
+            thresholdInMeters = -1.0,
+        )
+
+        val input = listOf(Coordinate(0.0, 0.0), Coordinate(0.0, 0.0))
+        assertEquals(
+            expected = input,
+            actual = sampler.sample(input),
+        )
+    }
+
+    @Test
+    fun `when thresholdInMeters is zero then remove redundant points`() {
+        val sampler = DistanceThresholdSampler(
+            thresholdInMeters = 0.0,
+        )
+
+        val input = listOf(
+            Coordinate(0.0, 0.0),
+            Coordinate(0.0, 0.0),
+            Coordinate(1.0, 1.0),
+            Coordinate(1.0, 1.0),
+            Coordinate(1.0, 1.0),
+            Coordinate(0.0, 0.0),
+            Coordinate(0.0, 0.0),
+        )
+        assertEquals(
+            expected = listOf(
+                Coordinate(0.0, 0.0),
+                Coordinate(1.0, 1.0),
+                Coordinate(0.0, 0.0),
+            ),
+            actual = sampler.sample(input),
+        )
+    }
+
+    @Test
     fun `when sampling empty list then return empty list`() {
         val input = emptyList<Coordinate>()
         assertEquals(
