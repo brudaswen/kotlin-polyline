@@ -28,7 +28,7 @@ public class RamerDouglasPeuckerSampler(
 ) : TrackSampler {
 
     override fun sample(coordinates: List<Coordinate>): List<Coordinate> {
-        if (epsilon <= 0.0) return coordinates
+        if (epsilon < 0.0) return coordinates
         if (coordinates.size < 3) return coordinates
 
         return ramerDouglasPeucker(
