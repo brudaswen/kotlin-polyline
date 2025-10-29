@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2025-10-29
+
+### Fixed
+
+- Improve zero threshold sampling.
+- Improve zero epsilon sampling.
+
 ## [1.1.0] - 2025-10-29
 
 ### Added
