@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-10-29
+
+### Added
+
+- Polyline sampling using Ramer–Douglas–Peucker algorithm.
+
 ## [1.0.0] - 2025-10-28
 
 ### Added
