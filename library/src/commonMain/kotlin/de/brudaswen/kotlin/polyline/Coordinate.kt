@@ -1,5 +1,7 @@
 package de.brudaswen.kotlin.polyline
 
+import de.brudaswen.kotlin.polyline.distance.HaversineDistance
+
 /**
  * Coordinate of a [Polyline].
  */
@@ -23,6 +25,15 @@ public fun Coordinate(
 ): Coordinate = CoordinateImpl(
     lat = lat,
     lon = lon,
+)
+
+public fun Coordinate.distanceTo(
+    other: Coordinate,
+): Double = HaversineDistance.distanceInMeters(
+    lat1 = this.lat,
+    lon1 = this.lon,
+    lat2 = other.lat,
+    lon2 = other.lon,
 )
 
 internal data class CoordinateImpl(

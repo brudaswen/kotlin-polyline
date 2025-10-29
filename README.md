@@ -45,6 +45,26 @@ val encoded = PolylineEncoding.encode(polyline)
 val decoded = PolylineEncoding.decode(encoded)
 ```
 
+### Polyline Sampling
+
+The `Polyline` can be sampled to reduce its size using a simple `Distance Threshold` algorithm and
+the [Ramer–Douglas–Peucker algorithm](https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm).
+
+```kotlin
+// Sample using default distance threshold of 1 meter and Ramer–Douglas–Peucker epsilon of `1.0`
+val sampled = polyline.sample()
+
+// Set custom distance threshold and Ramer–Douglas–Peucker epsilon
+val sampled = polyline.sample(
+    thresholdInMeters = 5.0,
+    epsilon = 2.0,
+)
+
+// Use Samplers manually
+val sampled = DistanceThresholdSampler(thresholdInMeters = 5.0).sample(polyline)
+val sampled = RamerDouglasPeuckerSampler(epsilon = 2.0).sample(polyline)
+```
+
 ### Custom `Polyline` or `Coordinate` implementation
 
 Existing classes could implement the `Polyline` and/or `Coordinate` interface to directly encode

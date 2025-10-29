@@ -14,6 +14,11 @@ abstract fun interface <#A: de.brudaswen.kotlin.polyline/Polyline, #B: de.brudas
     abstract fun create(kotlin.sequences/Sequence<#B>): #A // de.brudaswen.kotlin.polyline/PolylineFactory.create|create(kotlin.sequences.Sequence<1:1>){}[0]
 }
 
+abstract fun interface de.brudaswen.kotlin.polyline.sampler/TrackSampler { // de.brudaswen.kotlin.polyline.sampler/TrackSampler|null[0]
+    abstract fun sample(kotlin.collections/List<de.brudaswen.kotlin.polyline/Coordinate>): kotlin.collections/List<de.brudaswen.kotlin.polyline/Coordinate> // de.brudaswen.kotlin.polyline.sampler/TrackSampler.sample|sample(kotlin.collections.List<de.brudaswen.kotlin.polyline.Coordinate>){}[0]
+    open fun sample(de.brudaswen.kotlin.polyline/Polyline): de.brudaswen.kotlin.polyline/Polyline // de.brudaswen.kotlin.polyline.sampler/TrackSampler.sample|sample(de.brudaswen.kotlin.polyline.Polyline){}[0]
+}
+
 abstract interface de.brudaswen.kotlin.polyline/Coordinate { // de.brudaswen.kotlin.polyline/Coordinate|null[0]
     abstract val lat // de.brudaswen.kotlin.polyline/Coordinate.lat|{}lat[0]
         abstract fun <get-lat>(): kotlin/Double // de.brudaswen.kotlin.polyline/Coordinate.lat.<get-lat>|<get-lat>(){}[0]
@@ -30,6 +35,22 @@ abstract interface de.brudaswen.kotlin.polyline/Polyline { // de.brudaswen.kotli
     }
 }
 
+final class de.brudaswen.kotlin.polyline.sampler/DistanceThresholdSampler : de.brudaswen.kotlin.polyline.sampler/TrackSampler { // de.brudaswen.kotlin.polyline.sampler/DistanceThresholdSampler|null[0]
+    constructor <init>(kotlin/Double) // de.brudaswen.kotlin.polyline.sampler/DistanceThresholdSampler.<init>|<init>(kotlin.Double){}[0]
+
+    final fun sample(kotlin.collections/List<de.brudaswen.kotlin.polyline/Coordinate>): kotlin.collections/List<de.brudaswen.kotlin.polyline/Coordinate> // de.brudaswen.kotlin.polyline.sampler/DistanceThresholdSampler.sample|sample(kotlin.collections.List<de.brudaswen.kotlin.polyline.Coordinate>){}[0]
+}
+
+final class de.brudaswen.kotlin.polyline.sampler/RamerDouglasPeuckerSampler : de.brudaswen.kotlin.polyline.sampler/TrackSampler { // de.brudaswen.kotlin.polyline.sampler/RamerDouglasPeuckerSampler|null[0]
+    constructor <init>(kotlin/Double) // de.brudaswen.kotlin.polyline.sampler/RamerDouglasPeuckerSampler.<init>|<init>(kotlin.Double){}[0]
+
+    final fun sample(kotlin.collections/List<de.brudaswen.kotlin.polyline/Coordinate>): kotlin.collections/List<de.brudaswen.kotlin.polyline/Coordinate> // de.brudaswen.kotlin.polyline.sampler/RamerDouglasPeuckerSampler.sample|sample(kotlin.collections.List<de.brudaswen.kotlin.polyline.Coordinate>){}[0]
+}
+
+final object de.brudaswen.kotlin.polyline.distance/HaversineDistance { // de.brudaswen.kotlin.polyline.distance/HaversineDistance|null[0]
+    final fun distanceInMeters(kotlin/Double, kotlin/Double, kotlin/Double, kotlin/Double): kotlin/Double // de.brudaswen.kotlin.polyline.distance/HaversineDistance.distanceInMeters|distanceInMeters(kotlin.Double;kotlin.Double;kotlin.Double;kotlin.Double){}[0]
+}
+
 final object de.brudaswen.kotlin.polyline/PolylineEncoding { // de.brudaswen.kotlin.polyline/PolylineEncoding|null[0]
     final fun <#A1: de.brudaswen.kotlin.polyline/Coordinate> decodeCoordinates(kotlin/String, de.brudaswen.kotlin.polyline/CoordinateFactory<#A1>): kotlin.sequences/Sequence<#A1> // de.brudaswen.kotlin.polyline/PolylineEncoding.decodeCoordinates|decodeCoordinates(kotlin.String;de.brudaswen.kotlin.polyline.CoordinateFactory<0:0>){0§<de.brudaswen.kotlin.polyline.Coordinate>}[0]
     final fun <#A1: de.brudaswen.kotlin.polyline/Polyline, #B1: de.brudaswen.kotlin.polyline/Coordinate> decode(kotlin/String, de.brudaswen.kotlin.polyline/PolylineFactory<#A1, #B1>, de.brudaswen.kotlin.polyline/CoordinateFactory<#B1>): de.brudaswen.kotlin.polyline/Polyline // de.brudaswen.kotlin.polyline/PolylineEncoding.decode|decode(kotlin.String;de.brudaswen.kotlin.polyline.PolylineFactory<0:0,0:1>;de.brudaswen.kotlin.polyline.CoordinateFactory<0:1>){0§<de.brudaswen.kotlin.polyline.Polyline>;1§<de.brudaswen.kotlin.polyline.Coordinate>}[0]
@@ -40,6 +61,8 @@ final object de.brudaswen.kotlin.polyline/PolylineEncoding { // de.brudaswen.kot
     final fun encode(kotlin.sequences/Sequence<de.brudaswen.kotlin.polyline/Coordinate>): kotlin/String // de.brudaswen.kotlin.polyline/PolylineEncoding.encode|encode(kotlin.sequences.Sequence<de.brudaswen.kotlin.polyline.Coordinate>){}[0]
 }
 
+final fun (de.brudaswen.kotlin.polyline/Coordinate).de.brudaswen.kotlin.polyline/distanceTo(de.brudaswen.kotlin.polyline/Coordinate): kotlin/Double // de.brudaswen.kotlin.polyline/distanceTo|distanceTo@de.brudaswen.kotlin.polyline.Coordinate(de.brudaswen.kotlin.polyline.Coordinate){}[0]
 final fun (de.brudaswen.kotlin.polyline/Polyline).de.brudaswen.kotlin.polyline/encoded(): kotlin/String // de.brudaswen.kotlin.polyline/encoded|encoded@de.brudaswen.kotlin.polyline.Polyline(){}[0]
+final fun (de.brudaswen.kotlin.polyline/Polyline).de.brudaswen.kotlin.polyline/sample(kotlin/Double = ..., kotlin/Double = ...): de.brudaswen.kotlin.polyline/Polyline // de.brudaswen.kotlin.polyline/sample|sample@de.brudaswen.kotlin.polyline.Polyline(kotlin.Double;kotlin.Double){}[0]
 final fun de.brudaswen.kotlin.polyline/Coordinate(kotlin/Double, kotlin/Double): de.brudaswen.kotlin.polyline/Coordinate // de.brudaswen.kotlin.polyline/Coordinate|Coordinate(kotlin.Double;kotlin.Double){}[0]
 final fun de.brudaswen.kotlin.polyline/Polyline(kotlin.collections/List<de.brudaswen.kotlin.polyline/Coordinate>): de.brudaswen.kotlin.polyline/Polyline // de.brudaswen.kotlin.polyline/Polyline|Polyline(kotlin.collections.List<de.brudaswen.kotlin.polyline.Coordinate>){}[0]

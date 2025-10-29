@@ -9,6 +9,7 @@ public abstract interface class de/brudaswen/kotlin/polyline/CoordinateFactory {
 
 public final class de/brudaswen/kotlin/polyline/CoordinateKt {
 	public static final fun Coordinate (DD)Lde/brudaswen/kotlin/polyline/Coordinate;
+	public static final fun distanceTo (Lde/brudaswen/kotlin/polyline/Coordinate;Lde/brudaswen/kotlin/polyline/Coordinate;)D
 }
 
 public abstract interface class de/brudaswen/kotlin/polyline/Polyline {
@@ -38,5 +39,33 @@ public abstract interface class de/brudaswen/kotlin/polyline/PolylineFactory {
 public final class de/brudaswen/kotlin/polyline/PolylineKt {
 	public static final fun Polyline (Ljava/util/List;)Lde/brudaswen/kotlin/polyline/Polyline;
 	public static final fun encoded (Lde/brudaswen/kotlin/polyline/Polyline;)Ljava/lang/String;
+	public static final fun sample (Lde/brudaswen/kotlin/polyline/Polyline;DD)Lde/brudaswen/kotlin/polyline/Polyline;
+	public static synthetic fun sample$default (Lde/brudaswen/kotlin/polyline/Polyline;DDILjava/lang/Object;)Lde/brudaswen/kotlin/polyline/Polyline;
+}
+
+public final class de/brudaswen/kotlin/polyline/distance/HaversineDistance {
+	public static final field INSTANCE Lde/brudaswen/kotlin/polyline/distance/HaversineDistance;
+	public final fun distanceInMeters (DDDD)D
+}
+
+public final class de/brudaswen/kotlin/polyline/sampler/DistanceThresholdSampler : de/brudaswen/kotlin/polyline/sampler/TrackSampler {
+	public fun <init> (D)V
+	public fun sample (Lde/brudaswen/kotlin/polyline/Polyline;)Lde/brudaswen/kotlin/polyline/Polyline;
+	public fun sample (Ljava/util/List;)Ljava/util/List;
+}
+
+public final class de/brudaswen/kotlin/polyline/sampler/RamerDouglasPeuckerSampler : de/brudaswen/kotlin/polyline/sampler/TrackSampler {
+	public fun <init> (D)V
+	public fun sample (Lde/brudaswen/kotlin/polyline/Polyline;)Lde/brudaswen/kotlin/polyline/Polyline;
+	public fun sample (Ljava/util/List;)Ljava/util/List;
+}
+
+public abstract interface class de/brudaswen/kotlin/polyline/sampler/TrackSampler {
+	public fun sample (Lde/brudaswen/kotlin/polyline/Polyline;)Lde/brudaswen/kotlin/polyline/Polyline;
+	public abstract fun sample (Ljava/util/List;)Ljava/util/List;
+}
+
+public final class de/brudaswen/kotlin/polyline/sampler/TrackSampler$DefaultImpls {
+	public static fun sample (Lde/brudaswen/kotlin/polyline/sampler/TrackSampler;Lde/brudaswen/kotlin/polyline/Polyline;)Lde/brudaswen/kotlin/polyline/Polyline;
 }
 
